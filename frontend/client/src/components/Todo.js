@@ -4,6 +4,8 @@ import axios from 'axios';
 import Input from './Input';
 import ListTodo from './ListTodo';
 
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+
 class Todo extends Component {
   state = {
     todos: []
@@ -14,7 +16,8 @@ class Todo extends Component {
   }
 
   getTodos = () => {
-    axios.get('/api/todos') 
+    axios.get(`${BACKEND_URL}/api/todos`)
+
       .then(res => {
         if (res.data) {
           this.setState({
@@ -26,7 +29,8 @@ class Todo extends Component {
   };
 
   deleteTodo = (id) => {
-    axios.delete(`/api/todos/${id}`)
+    axios.delete(`${BACKEND_URL}/api/todos/${id}`)
+
       .then(res => {
         if (res.data) {
           this.getTodos();
@@ -36,7 +40,7 @@ class Todo extends Component {
   };
 
   updateTodo = (id, newAction) => {
-  axios.put(`/api/todos/${id}`, { action: newAction })
+  axios.put(`${BACKEND_URL}/api/todos/${id}`, { action: newAction })
     .then(res => {
       if (res.data) {
         this.getTodos();

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 class Input extends Component {
   state = {
@@ -10,7 +11,7 @@ class Input extends Component {
     const task = { action: this.state.action };
 
     if (task.action && task.action.length > 0) {
-      axios.post('/api/todos', task)
+      axios.post(`${BACKEND_URL}/api/todos`, task)
         .then(res => {
           if (res.data) {
             this.props.getTodos();
