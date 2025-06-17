@@ -1,17 +1,18 @@
-//Import mongoose
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema; // retrieves the mongoose schema constructor
+const { DataTypes } = require('sequelize');
+const sequelize = require('../db'); // import Sequelize instance
 
-// Defines the todo schema
-const TodoSchema = new Schema({
+const Todo = sequelize.define('Todo', {
   action: {
-    type: String,
-    required: [true, 'The todo text field is required']
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: {
+        msg: 'The todo text field is required'
+      }
+    }
   }
+}, {
+  tableName: 'todos'
 });
 
-// Create model for todo
-const Todo = mongoose.model('todo', TodoSchema);
-
-// exports the todo model to be used in other parts of the app.
 module.exports = Todo;
