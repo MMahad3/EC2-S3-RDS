@@ -16,7 +16,8 @@ class Todo extends Component {
   }
 
   getTodos = () => {
-    axios.get(`${BACKEND_URL}/api/todos`)
+    axios.get(`${process.env.EC2_URL}/api/todos`)
+
 
       .then(res => {
         if (res.data) {
@@ -29,7 +30,7 @@ class Todo extends Component {
   };
 
   deleteTodo = (id) => {
-    axios.delete(`${BACKEND_URL}/api/todos/${id}`)
+    axios.delete(`${process.env.EC2_URL}/api/todos${id}`)
 
       .then(res => {
         if (res.data) {
@@ -40,7 +41,7 @@ class Todo extends Component {
   };
 
   updateTodo = (id, newAction) => {
-  axios.put(`${BACKEND_URL}/api/todos/${id}`, { action: newAction })
+  axios.put(`${process.env.EC2_URL}/api/todos${id}`, { action: newAction })
     .then(res => {
       if (res.data) {
         this.getTodos();

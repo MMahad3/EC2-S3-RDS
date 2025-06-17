@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors'); // ✅ added
 const routes = require('./routes/api');
 require('dotenv').config();
 
@@ -9,22 +10,12 @@ const Todo = require('./models/todo'); // Sequelize model
 const app = express();
 const port = process.env.PORT || 5000;
 
-// CORS middleware with support for PUT, DELETE, OPTIONS
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers", 
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  res.header(
-    "Access-Control-Allow-Methods", 
-    "GET, POST, PUT, DELETE, OPTIONS"
-  );
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(200); // Allow preflight requests
-  }
-  next();
-});
+// ✅ CORS middleware using .env FRONTEND_URL
+app.use(cors({
+  origin: process.env.FRONTEND_URL, // e.g. https://your-cloudfront-url.cloudfront.net
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  credentials: true
+}));
 
 app.use(bodyParser.json());
 
