@@ -5,7 +5,7 @@ const ListTodo = ({ todos, deleteTodo, updateTodo }) => {
   const [editText, setEditText] = useState('');
 
   const startEditing = (todo) => {
-    setEditId(todo._id);
+    setEditId(todo.id);
     setEditText(todo.action);
   };
 
@@ -15,18 +15,24 @@ const ListTodo = ({ todos, deleteTodo, updateTodo }) => {
   };
 
   const saveEdit = () => {
-    if (editText.trim()) {
-      updateTodo(editId, editText);
-      cancelEditing();
-    }
-  };
+  if (!editId) {
+    console.error("❌ No valid ID to update");
+    return;
+  }
+
+  if (editText.trim()) {
+    updateTodo(editId, editText);
+    cancelEditing();
+  }
+};
+
 
   return (
     <ul>
       {todos && todos.length > 0 ? (
         todos.map((todo) => (
-          <li key={todo._id} className="todo-item">
-  {editId === todo._id ? (
+          <li key={todo.id} className="todo-item">
+  {editId === todo.id ? (
     <>
       <input
         type="text"
@@ -44,7 +50,7 @@ const ListTodo = ({ todos, deleteTodo, updateTodo }) => {
       <span className="todo-text">{todo.action}</span>
       <div className="button-group">
         <button className="edit-btn" onClick={() => startEditing(todo)}>Edit</button>
-        <button className="delete-btn" onClick={() => deleteTodo(todo._id)}>Delete</button>
+        <button className="delete-btn" onClick={() => deleteTodo(todo.id)}>Delete</button>
       </div>
     </>
   )}

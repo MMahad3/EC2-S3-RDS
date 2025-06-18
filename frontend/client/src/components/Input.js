@@ -11,7 +11,7 @@ class Input extends Component {
     const task = { action: this.state.action };
 
     if (task.action && task.action.length > 0) {
-      axios.post(`${process.env.EC2_URL}/api/todos`, task)
+      axios.post(`${process.env.REACT_APP_EC2_URL}/api/todos`, task)
         .then(res => {
           if (res.data) {
             this.props.getTodos();

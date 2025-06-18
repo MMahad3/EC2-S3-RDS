@@ -17,6 +17,10 @@ app.use(cors({
   credentials: true
 }));
 
+app.get('/health', (req, res) => {
+  res.json({ status: 'Backend server is running', port });
+});
+
 app.use(bodyParser.json());
 
 // Routes
