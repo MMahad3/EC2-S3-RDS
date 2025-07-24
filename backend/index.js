@@ -5,7 +5,7 @@ const routes = require('./routes/api');
 require('dotenv').config();
 
 const sequelize = require('./db'); // Sequelize connection
-const Todo = require('./models/todo'); // Sequelize model
+const Todo = require('./models/todo'); 
 
 const app = express();
 const port = process.env.PORT || 5000;
