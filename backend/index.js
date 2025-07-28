@@ -4,7 +4,7 @@ const cors = require('cors'); // ✅ added
 const routes = require('./routes/api');
 require('dotenv').config();
 
-const sequelize = require('./db'); // Sequelize connection
+const sequelize = require('./db'); 
 const Todo = require('./models/todo'); 
 
 const app = express();
