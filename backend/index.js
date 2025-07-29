@@ -23,7 +23,7 @@ app.get('/health', (req, res) => {
 
 app.use(bodyParser.json());
 
-// Routes
+
 app.use('/api', routes);
 
 // Error handler
