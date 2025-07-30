@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const cors = require('cors'); // ✅ added
+const cors = require('cors'); 
 const routes = require('./routes/api');
 require('dotenv').config();
 
@@ -10,7 +10,7 @@ const Todo = require('./models/todo');
 const app = express();
 const port = process.env.PORT || 5000;
 
-// ✅ CORS middleware using .env FRONTEND_URL
+// CORS middleware using .env FRONTEND_URL
 app.use(cors({
   origin: process.env.FRONTEND_URL, // e.g. https://your-cloudfront-url.cloudfront.net
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
