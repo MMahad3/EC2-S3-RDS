@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 
 app.use('/api', routes);
 
-// Error handler
+
 app.use((err, req, res, next) => {
   console.error("API error:", err);
   res.status(500).json({ error: err.message || "Internal Server Error" });
