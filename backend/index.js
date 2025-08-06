@@ -32,7 +32,6 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: err.message || "Internal Server Error" });
 });
 
-// Connect to MySQL and start server
 sequelize.sync()
   .then(() => {
     console.log('MySQL database synced successfully.');
